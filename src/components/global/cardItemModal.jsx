@@ -8,15 +8,18 @@ const CardItemListModal = (props) => {
 
     const dispatch = useDispatch();
     const addToCardData = useSelector((state) => state.addToCardData);
+    const [quantities, setQuantities] = useState([...addToCardData.map(item => item.quantity || 1)]);
 
-    const DecrementData = (item) => {
-        // setCount(count - 1);
-        // dispatch(DecrementAction(item))
+    const DecrementData = (id) => {
+        setQuantities((prevQuantities) => prevQuantities.map((quantity, index) =>
+            index === id ? Math.max(quantity - 1, 1) : quantity
+        ));
     }
 
-    const IncrementData = (item) => {
-        // setCount(count + 1);
-        // dispatch(IncrementAction(item));
+    const IncrementData = (id) => {
+        setQuantities((prevQuantities) => prevQuantities.map((quantity, index) =>
+            index === id ? quantity + 1 : quantity
+        ));
     }
 
     const RemoveToCardHandler = (item, id) => {
@@ -43,7 +46,7 @@ const CardItemListModal = (props) => {
                         <Row className="mt-2 fontsize-14" >
                             {
                                 addToCardData?.map((item, ind) => {
-                                    console.log(item)
+                                    //console.log(item)
                                     return (
                                         <Col lg={12} className="py-3 pt-0 border-bottom" key={ind}>
                                             <Row>
@@ -64,15 +67,15 @@ const CardItemListModal = (props) => {
                                                     </Row>
                                                     <Row>
                                                         <Col lg={12}>
-                                                            <span className="fw-600 me-2">Rs. {item.price}</span>
+                                                            <span className="fw-600 me-2">Rs. {quantities[ind] * item.price}</span>
                                                         </Col>
                                                     </Row>
                                                     <Row style={{ marginTop: "160px" }}>
                                                         <Col lg={12}>
                                                             <span className="fw-600 me-2">
-                                                                <Button onClick={() => DecrementData(item)} disabled="" style={{ margin: "10px" }} variant="primary" className="ml-3">-</Button>
-                                                                <span style={{ marginRight: "10px" }}>1</span>
-                                                                <Button onClick={() => IncrementData(item)} variant="primary" >+</Button>
+                                                                <Button onClick={() => DecrementData(ind)} disabled="" style={{ margin: "10px" }} variant="primary" className="ml-3">-</Button>
+                                                                <span style={{ marginRight: "10px" }}>{quantities[ind]}</span>
+                                                                <Button onClick={() => IncrementData(ind)} variant="primary" >+</Button>
                                                             </span>
                                                             <span>
                                                                 <Button onClick={() => RemoveToCardHandler(item, item.id)} variant="danger" >Remove</Button>
