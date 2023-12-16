@@ -17,9 +17,9 @@ const CardItemListModal = (props) => {
     const IncrementData = (item) => {
         // setCount(count + 1);
         // dispatch(IncrementAction(item));
-     }
+    }
 
-     const RemoveToCardHandler = (item, id) =>{
+    const RemoveToCardHandler = (item, id) => {
         dispatch(RemoveToCardAction(item));
         dispatch(RemoveToCardArrIDAction(id));
     }
@@ -34,7 +34,7 @@ const CardItemListModal = (props) => {
 
                 <Modal.Header closeButton>
                     <Modal.Title className="position-r">
-                        Add To Cart
+                        Add Item(s)
                     </Modal.Title>
 
                 </Modal.Header>
@@ -56,13 +56,29 @@ const CardItemListModal = (props) => {
                                                 </Col>
 
                                                 <Col lg={4}>
-                                                    <span className="fw-600 me-2">{item.title}</span><br />
-                                                    <span className="fw-600 me-2">Rs. {item.price}</span><br />
-                                                    <span className="fw-600 me-2">
-                                                        <Button onClick={() => DecrementData(item)} disabled="" style={{ margin: "10px" }} variant="primary" className="ml-3">-</Button>
-                                                        <Button onClick={() => IncrementData(item)} variant="primary" >+</Button>
-                                                    </span>
-                                                    <span><Button onClick={()=>RemoveToCardHandler(item, item.id)} variant="danger" >Remove</Button></span>
+                                                    <Row>
+                                                        <Col lg={12}>
+                                                            <span className="fw-600 me-2">{item.title}</span><br />
+                                                            <span className="fw-600 me-2">{item.category}</span>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col lg={12}>
+                                                            <span className="fw-600 me-2">Rs. {item.price}</span>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row style={{ marginTop: "160px" }}>
+                                                        <Col lg={12}>
+                                                            <span className="fw-600 me-2">
+                                                                <Button onClick={() => DecrementData(item)} disabled="" style={{ margin: "10px" }} variant="primary" className="ml-3">-</Button>
+                                                                <span style={{ marginRight: "10px" }}>1</span>
+                                                                <Button onClick={() => IncrementData(item)} variant="primary" >+</Button>
+                                                            </span>
+                                                            <span>
+                                                                <Button onClick={() => RemoveToCardHandler(item, item.id)} variant="danger" >Remove</Button>
+                                                            </span>
+                                                        </Col>
+                                                    </Row>
                                                 </Col>
                                                 <Col lg={12}>
                                                     <p>{item.description}</p>

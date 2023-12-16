@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch, useSelector } from "react-redux";
 import CardItemListModal from "./cardItemModal";
+import UserModal from "./userModal";
 
 const style = {
     backgroundColor: "#03A9F4",
@@ -14,6 +15,7 @@ const Header = (props) => {
 
     const addToCardData = useSelector((state) => state.addToCardData);
     const [show, setShow] = useState(false);
+    const [userModal, setUserModal] = useState(false);
     // console.log(props.headerType);
 
     return (
@@ -46,12 +48,13 @@ const Header = (props) => {
                                 <span><FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /></span>
                                 <span onClick={()=>setShow(true)} style={{ marginLeft: "20px" }}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span>
                                 <span style={{ position: "relative", top: "-11px", fontSize: "14px" }}>{addToCardData.length > 0 && addToCardData.length}</span>
-                                <span style={{ marginLeft: "20px" }}><FontAwesomeIcon icon="fa-solid fa-user" /></span>
+                                <span onClick={()=>setUserModal(true)} style={{ marginLeft: "20px" }}><FontAwesomeIcon icon="fa-solid fa-user" /></span>
                             </Col>
                         </Row>
                 }
             </Container>
             <CardItemListModal show={show} onHide={()=>setShow(false)}/>
+            <UserModal show={userModal} onHide={()=>setUserModal(false)}/>
         </header>
     )
 }

@@ -246,10 +246,10 @@ const SignupPage = (props) => {
 
                     <Col lg={12}>
                         <Form.Group style={{ marginTop: "10px" }}>
-                            <Form.Label style={{ display: "flex" }}>Moboile Number<span className="text-danger">*</span></Form.Label>
+                            <Form.Label style={{ display: "flex" }}>Mobile Number<span className="text-danger">*</span></Form.Label>
                             <Form.Control
                                 type="text"
-                                placeholder="Moboile Number"
+                                placeholder="Mobile Number"
                                 name="number"
                                 {...register("number", {
                                     required: "Please enter valid number.",

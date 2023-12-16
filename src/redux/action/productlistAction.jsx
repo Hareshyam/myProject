@@ -46,6 +46,20 @@ export const RemoveToCardArrIDAction = (data) => {
     }
 }
 
+export const RemoveAllArrIdAction = () => {
+    return {
+        type: ActionTypes.REMOVE_All_ARR_ID,
+        payload: []
+    }
+}
+
+export const RemoveAllDataAction = () => {
+    return {
+        type: ActionTypes.REMOVE_All_DATA,
+        payload: []
+    }
+}
+
 export const IncrementAction = (data) => {
     return {
         type: ActionTypes.INC_DATA,

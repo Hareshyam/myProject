@@ -18,6 +18,7 @@ const LoginPage = () => {
         e.preventDefault();
         if ((signupData.cnfpassword === password) && (signupData.email === email)) {
             dispatch(LoginAction({ email: email, pass: password }));
+            sessionStorage.setItem('token',true);
             navigate("/productList");
             setEmail("");
             setPassword("");
