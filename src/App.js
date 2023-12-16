@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+
+import Home from './components/fronted/home';
+import ForgotPass from './components/fronted/forgotPassworf';
+import ProductList from './components/fronted/productList/productList';
 
 const App = () => {
   return (
     <div className="App">
-      <header className="">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello this is react project.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/forgotPassword" exact element={<ForgotPass />} />
+        <Route path="/productList" exact element={<ProductList />} />
+      </Routes>
     </div>
   );
 }

@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+/* .App .container-fluid .row .col-md-6 .nav .nav-item {
+  width: 50%;
+} 
+
+.App .container-fluid .row .col-md-6 .nav .nav-item #uncontrolled-tab-example-tab-login{
+  width: 100%;
+} 
+
+.App .container-fluid .row .col-md-6 .nav .nav-item {
+  width: 50%;
+} 
+
+.App .container-fluid .row .col-md-6 .nav .nav-item #uncontrolled-tab-example-tab-signup{
+  width: 100%;
+}  */
