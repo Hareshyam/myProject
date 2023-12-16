@@ -3,25 +3,28 @@ import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from 'react-hook-form';
 import { SignUpAction } from "../../../redux/action/singnupAction";
+import { StateDataAction } from "../../../redux/action/stateDataAction";
+import { CityDataAction } from "../../../redux/action/cityDataAction";
 
 const SignupPage = (props) => {
 
     const dispatch = useDispatch();
-
+    const stateData = useSelector((state) => state.stateData);
+    const cityData = useSelector((state) => state.cityData);
     const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
 
     const [matchPass, setMatchPass] = useState("");
 
     const SubmitHandler = (data) => {
         //console.log(data);
-        if(data.password === data.cnfpassword){
-            dispatch(SignUpAction({...data}))
+        if (data.password === data.cnfpassword) {
+            dispatch(SignUpAction({ ...data }))
             props.setKey("login");
             reset();
-        }else{
+        } else {
             setMatchPass("Confirm password are not match.");
         }
-        
+
     };
 
     useEffect(() => {
@@ -32,59 +35,73 @@ const SignupPage = (props) => {
         }
     }, [watch("cnfpassword")])
 
+    useEffect(() => {
+        if (watch("state") !== "" && watch("state") !== null) {
+            stateData?.filter(val => {
+                if (val.name === watch("state")) {
+                    dispatch(CityDataAction({ "state_id": val.id }))
+                }
+            })
+        }
+    }, [watch("state")])
+
+    useEffect(() => {
+        dispatch(StateDataAction());
+    }, [])
+
     return (
         <Container style={{ marginTop: "20px" }}>
             <Form onSubmit={handleSubmit(SubmitHandler)} autoComplete="off">
                 <Row className="row">
 
                     <Col lg={12}>
-                        
+
                         <Form.Group style={{ marginTop: "10px" }}>
                             <Form.Label style={{ display: "flex" }}>Individual/Enterprise/Government<span className="text-danger">*</span></Form.Label>
                             <Row>
-                            <Col lg={4}>
-                            <Form.Check
-                                type="radio"
-                                label="Individual"
-                                checked={watch("indentgov") === "Individual" ? true : false}
-                                name="indentgov"
-                                value="Individual"
-                                style={{display: "table"}}
-                                {...register("indentgov", {
-                                    required: "This field is required.",
-                                })}
-                            />
-                            </Col>
-                            <Col lg={4}>
-                            <Form.Check
-                                type="radio"
-                                label="Enterprise"
-                                checked={watch("indentgov") === "Enterprise" ? true : false}
-                                name="indentgov"
-                                value="Enterprise"
-                                style={{display: "table"}}
-                                {...register("indentgov", {
-                                    required: "This field is required.",
-                                })}
-                            />
-                            </Col>
-                            <Col lg={4}>
-                            <Form.Check
-                                type="radio"
-                                label="Government"
-                                checked={watch("indentgov") === "Government" ? true : false}
-                                name="indentgov"
-                                value="Government"
-                                style={{display: "table"}}
-                                {...register("indentgov", {
-                                    required: "This field is required.",
-                                })}
-                            />
-                            </Col>
+                                <Col lg={4}>
+                                    <Form.Check
+                                        type="radio"
+                                        label="Individual"
+                                        checked={watch("indentgov") === "Individual" ? true : false}
+                                        name="indentgov"
+                                        value="Individual"
+                                        style={{ display: "table" }}
+                                        {...register("indentgov", {
+                                            required: "This field is required.",
+                                        })}
+                                    />
+                                </Col>
+                                <Col lg={4}>
+                                    <Form.Check
+                                        type="radio"
+                                        label="Enterprise"
+                                        checked={watch("indentgov") === "Enterprise" ? true : false}
+                                        name="indentgov"
+                                        value="Enterprise"
+                                        style={{ display: "table" }}
+                                        {...register("indentgov", {
+                                            required: "This field is required.",
+                                        })}
+                                    />
+                                </Col>
+                                <Col lg={4}>
+                                    <Form.Check
+                                        type="radio"
+                                        label="Government"
+                                        checked={watch("indentgov") === "Government" ? true : false}
+                                        name="indentgov"
+                                        value="Government"
+                                        style={{ display: "table" }}
+                                        {...register("indentgov", {
+                                            required: "This field is required.",
+                                        })}
+                                    />
+                                </Col>
                             </Row>
                             {errors.indentgov && <span className="text-danger" style={{ display: "flex" }}>{errors.indentgov.message}</span>}
                         </Form.Group>
-                        
+
                     </Col>
 
                     <Col lg={6}>
@@ -158,7 +175,7 @@ const SignupPage = (props) => {
                                 {...register("country", { required: "Please select your countru." })}
                             >
                                 <option ></option>
-                                <option >country</option>
+                                <option >India</option>
                             </Form.Select>
                             {errors.country && <span className="text-danger" style={{ display: "flex" }}>{errors.country.message}</span>}
                         </Form.Group>
@@ -174,7 +191,13 @@ const SignupPage = (props) => {
                                 {...register("state", { required: "Please select your state." })}
                             >
                                 <option ></option>
-                                <option >state</option>
+                                {
+                                    stateData?.map((val, ind) => {
+                                        return (
+                                            <option key={ind}>{val.name}</option>
+                                        )
+                                    })
+                                }
                             </Form.Select>
                             {errors.state && <span className="text-danger" style={{ display: "flex" }}>{errors.state.message}</span>}
                         </Form.Group>
@@ -190,7 +213,13 @@ const SignupPage = (props) => {
                                 {...register("city", { required: "Please select your city." })}
                             >
                                 <option ></option>
-                                <option >city</option>
+                                {
+                                    cityData?.map((val, ind)=>{
+                                        return(
+                                            <option key={ind}>{val.name}</option>
+                                        )
+                                    })
+                                }
                             </Form.Select>
                             {errors.city && <span className="text-danger" style={{ display: "flex" }}>{errors.city.message}</span>}
                         </Form.Group>

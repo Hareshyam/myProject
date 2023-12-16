@@ -1,18 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button, Tabs, Tab } from 'react-bootstrap';
 
 import LoginPage from "./login";
 import SignupPage from "./singnup";
 import Header from "../../global/header";
 
-const Home = () => {
+const Home = (props) => {
 
     const [key, setKey] = useState('signup');
 
     return (
+        <>
+            <Header title={`Login Page`} headerType={props.headerType}/>
         <Container fluid>
 
-            <Header/>
 
             <Row style={{margin: "10px"}}>
                 <Col md={6}></Col>
@@ -33,6 +34,7 @@ const Home = () => {
                 </Col>
             </Row>
         </Container>
+        </>
     )
 }
 

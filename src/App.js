@@ -10,9 +10,9 @@ const App = () => {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/forgotPassword" exact element={<ForgotPass />} />
-        <Route path="/productList" exact element={<ProductList />} />
+        <Route path="/" exact element={<Home headerType="1"/>} />
+        <Route path="/forgotPassword" exact element={<ForgotPass headerType="1"/>} />
+        <Route path="/productList" exact element={<ProductList headerType="2"/>} />
       </Routes>
     </div>
   );

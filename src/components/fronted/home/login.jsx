@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import { LoginAction } from "../../../redux/action/loginAction";
 
 const LoginPage = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const signupData = useSelector((state) => state.signupData);
-
-    //console.log(signupData);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,6 +17,7 @@ const LoginPage = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         if ((signupData.cnfpassword === password) && (signupData.email === email)) {
+            dispatch(LoginAction({ email: email, pass: password }));
             navigate("/productList");
             setEmail("");
             setPassword("");
@@ -34,10 +34,9 @@ const LoginPage = () => {
                     {
                         errorMsg !== "" &&
                         <Col lg={12}>
-                            <p style={{display: "flex"}} className="text-danger">{errorMsg}</p>
+                            <p style={{ display: "flex" }} className="text-danger">{errorMsg}</p>
                         </Col>
                     }
-
                     <Col lg={12}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label style={{ display: "flex" }}>Email</Form.Label>
@@ -74,7 +73,6 @@ const LoginPage = () => {
                 </Row>
             </Form>
         </Container>
-
     )
 }
 
