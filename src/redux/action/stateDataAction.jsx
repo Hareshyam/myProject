@@ -4,7 +4,7 @@ import axios from "axios";
 export const StateDataAction = () => {
     return async function (dispatch) {
 
-        await axios.get(`http://gautamgupta.info/api/getstates`)
+        await axios.get(process.env.REACT_APP_STATE_API)
             .then(response => {
                  //console.log(response.data.data);
                 dispatch({

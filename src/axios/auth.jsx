@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const AuthUser = () => {
   const defaultOptions = {
-    baseURL: "",
+    baseURL: process.env.REACT_APP_BASE_URL,
     headers: {
       'Content-Type': 'application/json',
     },

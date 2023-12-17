@@ -4,7 +4,7 @@ import axios from "axios";
 export const CityDataAction = (value) => {
     return async function (dispatch) {
 
-        await axios.post(` https://gautamgupta.info/api/getCities`, value)
+        await axios.post(process.env.REACT_APP_CITY_API, value)
             .then(response => {
                 //console.log(response.data);
                 dispatch({

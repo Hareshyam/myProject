@@ -45,10 +45,10 @@ const Header = (props) => {
                                 <span style={{ marginLeft: "15px" }}>ACCESSORIES</span>
                             </Col>
                             <Col md={4} style={{ marginTop: "14px" }}>
-                                <span><FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /></span>
-                                <span onClick={()=>setShow(true)} style={{ marginLeft: "20px" }}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span>
-                                <span style={{ position: "relative", top: "-11px", fontSize: "14px" }}>{addToCardData.length > 0 && addToCardData.length}</span>
-                                <span onClick={()=>setUserModal(true)} style={{ marginLeft: "20px" }}><FontAwesomeIcon icon="fa-solid fa-user" /></span>
+                                <span style={{cursor: "pointer"}}><FontAwesomeIcon icon="fa-solid fa-magnifying-glass" /></span>
+                                <span onClick={()=>setShow(true)} style={{ marginLeft: "20px", cursor: "pointer" }}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span>
+                                <span style={{ position: "relative", top: "-11px", fontSize: "14px", }}>{addToCardData.length > 0 && addToCardData.length}</span>
+                                <span onClick={()=>setUserModal(true)} style={{ marginLeft: "20px", cursor: "pointer" }}><FontAwesomeIcon icon="fa-solid fa-user" /></span>
                             </Col>
                         </Row>
                 }

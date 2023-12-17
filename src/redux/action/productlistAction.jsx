@@ -1,11 +1,12 @@
 import { ActionTypes } from "../constant/Index";
 import axios from "axios";
+//import auth from "../../axios/auth";
 
 export const ProductListAction = () => {
     return async function (dispatch) {
 
-        await axios.get(``)
-            .then(response => {//https://fakestoreapi.com/products
+        await axios.get(process.env.REACT_APP_PRODUCT_API)
+            .then(response => {//
                 //console.log(response.data);
                 dispatch({
                     type: ActionTypes.PRODUCT_LIST,
