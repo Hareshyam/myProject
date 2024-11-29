@@ -191,6 +191,7 @@ const SignupPage = (props) => {
                                 {...register("state", { required: "Please select your state." })}
                             >
                                 <option ></option>
+                                <option>Bihar</option>
                                 {
                                     stateData?.map((val, ind) => {
                                         return (
@@ -213,6 +214,7 @@ const SignupPage = (props) => {
                                 {...register("city", { required: "Please select your city." })}
                             >
                                 <option ></option>
+                                <option>patna</option>
                                 {
                                     cityData?.map((val, ind)=>{
                                         return(

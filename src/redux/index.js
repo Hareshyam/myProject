@@ -1,3 +1,4 @@
+//Using Thunk
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducer/Index';
 import ReduxThunk from 'redux-thunk';
@@ -14,3 +15,16 @@ export const store = createStore(
 
 );
 export const persistor = persistStore(store);
+
+
+//Using toolkit
+// import { configureStore } from '@reduxjs/toolkit';
+// import rootReducer from './reducer/Index';
+// import { persistStore } from 'redux-persist';
+// const store = configureStore({
+//     reducer : rootReducer,  // Set the rootReducer here
+// });
+
+// const persistor = persistStore(store);
+
+// export {store, persistor};
