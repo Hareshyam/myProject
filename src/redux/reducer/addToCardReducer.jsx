@@ -10,7 +10,6 @@ export const AddToCardReducer = (state = [], { type, payload }) => {
             const newArrayData = state.filter(item => item.id !== payload.id);
             return state = newArrayData;
 
-
         case ActionTypes.INC_DATA:
             return state = payload;
 
